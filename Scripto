@@ -196,7 +196,7 @@ SaveManager:BuildConfigSection(Tabs.Settings)
 Window:SelectTab(1)
 
 Fluent:Notify({
-    Title = "SkidHub",
+    Title = "Fluent",
     Content = "Script Loaded!",
     Duration = 8
 })
