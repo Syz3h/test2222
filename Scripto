@@ -3,7 +3,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "SkidHub "
+    Title = "Bcnhub " .. Fluent.Version,
     SubTitle = "very sigma",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
@@ -23,48 +23,19 @@ local Options = Fluent.Options
 do
     Fluent:Notify({
         Title = "Notification",
-        Content = "This is a notification",
+        Content = "Test notification",
         SubContent = "SubContent", -- Optional
-        Duration = 5 -- Set to nil to make the notification not disappear
+        Duration = 1 -- Set to nil to make the notification not disappear
     })
 
 
 
-    Tabs.Main:AddParagraph({
-        Title = "Paragraph",
-        Content = "This is a paragraph.\nSecond line!"
-    })
 
 
 
-    Tabs.Main:AddButton({
-        Title = "Button",
-        Description = "Very important button",
-        Callback = function()
-            Window:Dialog({
-                Title = "Title",
-                Content = "This is a dialog",
-                Buttons = {
-                    {
-                        Title = "Confirm",
-                        Callback = function()
-                            print("Confirmed the dialog.")
-                        end
-                    },
-                    {
-                        Title = "Cancel",
-                        Callback = function()
-                            print("Cancelled the dialog.")
-                        end
-                    }
-                }
-            })
-        end
-    })
+   
 
-
-
-    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Toggle", Default = false })
+    local Toggle = Tabs.Settings:AddToggle("MyToggle", {Title = "Toggle", Default = false })
 
     Toggle:OnChanged(function()
         print("Toggle changed:", Options.MyToggle.Value)
@@ -74,7 +45,7 @@ do
 
 
     
-    local Slider = Tabs.Main:AddSlider("Slider", {
+    local Slider = Tabs.Settings:AddSlider("Slider", {
         Title = "Slider",
         Description = "This is a slider",
         Default = 2,
@@ -93,8 +64,16 @@ do
     Slider:SetValue(3)
 
 
+    local AutoParry = Tabs.Main:AddButton("AutoParry", {
+        Title = "Auto Parry"
+        Description = "Auto Parry TSB (Might be patched),"
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Syz3h/TSB-Auto-Parry/main/AutoParry"))()
+    end
+})
 
-    local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
+
+
+    local Dropdown = Tabs.Settings:AddDropdown("Dropdown", {
         Title = "Dropdown",
         Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
         Multi = false,
@@ -109,7 +88,7 @@ do
 
 
     
-    local MultiDropdown = Tabs.Main:AddDropdown("MultiDropdown", {
+    local MultiDropdown = Tabs.Settings:AddDropdown("MultiDropdown", {
         Title = "Dropdown",
         Description = "You can select multiple values.",
         Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
@@ -133,7 +112,7 @@ do
 
 
 
-    local Colorpicker = Tabs.Main:AddColorpicker("Colorpicker", {
+    local Colorpicker = Tabs.Settings:AddColorpicker("Colorpicker", {
         Title = "Colorpicker",
         Default = Color3.fromRGB(96, 205, 255)
     })
@@ -146,7 +125,7 @@ do
 
 
 
-    local TColorpicker = Tabs.Main:AddColorpicker("TransparencyColorpicker", {
+    local TColorpicker = Tabs.Settings:AddColorpicker("TransparencyColorpicker", {
         Title = "Colorpicker",
         Description = "but you can change the transparency.",
         Transparency = 0,
@@ -162,7 +141,7 @@ do
 
 
 
-    local Keybind = Tabs.Main:AddKeybind("Keybind", {
+    local Keybind = Tabs.Settings:AddKeybind("Keybind", {
         Title = "KeyBind",
         Mode = "Toggle", -- Always, Toggle, Hold
         Default = "LeftControl", -- String as the name of the keybind (MB1, MB2 for mouse buttons)
@@ -205,7 +184,7 @@ do
     Keybind:SetValue("MB2", "Toggle") -- Sets keybind to MB2, mode to Hold
 
 
-    local Input = Tabs.Main:AddInput("Input", {
+    local Input = Tabs.Settings:AddInput("Input", {
         Title = "Input",
         Default = "Default",
         Placeholder = "Placeholder",
