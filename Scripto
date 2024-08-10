@@ -14,7 +14,7 @@ local Window = Fluent:CreateWindow({
 
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 local Tabs = {
-    Main = Window:AddTab({ Title = "Main", Icon = "" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "house" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
@@ -64,12 +64,32 @@ do
     Slider:SetValue(3)
 
 
-    local AutoParry = Tabs.Main:AddButton("AutoParry", {
-        Title = "Auto Parry"
-        Description = "Auto Parry TSB (Might be patched),"
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Syz3h/TSB-Auto-Parry/main/AutoParry"))()
+    Tabs.Main:AddButton({
+        Title = "Infinite Jump",
+        Description = "Jump Infinitely",
+        Callback = function()
+            local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
     end
 })
+
+
+
+local Slider = MainTab:CreateSlider({
+    Name = "Speed",
+    Range = {0, 750},
+    Increment = 1,
+    Suffix = "Speed",
+    CurrentValue = 16,
+    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+    end,
+ })
 
 
 
