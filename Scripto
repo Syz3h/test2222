@@ -65,7 +65,7 @@ do
     Slider:SetValue(3)
 
 
-    Tabs.Main:AddButton({
+    Tabs.Home:AddButton({
         Title = "Infinite Jump",
         Description = "Jump Infinitely",
         Callback = function()
@@ -80,7 +80,7 @@ end)
 
 
 
-local Slider = MainTab:CreateSlider({
+local Slider = HomeTab:CreateSlider({
     Name = "Speed",
     Range = {0, 750},
     Increment = 1,
